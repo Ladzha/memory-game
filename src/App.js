@@ -1,14 +1,37 @@
 import React, {useState, useEffect} from 'react';
 import Card from './Card';
+import Level from './Level';
+import PopUpWindow from './PopUpWindow'
 import './App.css';
 
-const cardImages=[
-  {'src':"./img/av1.svg", matched: false},
-  {'src':"./img/av2.svg", matched: false},
-  {'src':"./img/av3.svg", matched: false},
-  {'src':"./img/av4.svg", matched: false},
-  {'src':"./img/av5.svg", matched: false},
-  {'src':"./img/av6.svg", matched: false},
+
+const cardImages_1=[
+  {'src':"./img/av_1.svg", matched: false},
+  {'src':"./img/av_2.svg", matched: false},
+  {'src':"./img/av_3.svg", matched: false},
+  {'src':"./img/av_4.svg", matched: false},
+]
+
+const cardImages_2=[
+  {'src':"./img/av_1.svg", matched: false},
+  {'src':"./img/av_2.svg", matched: false},
+  {'src':"./img/av_3.svg", matched: false},
+  {'src':"./img/av_4.svg", matched: false},
+  {'src':"./img/av_5.svg", matched: false},
+  {'src':"./img/av_6.svg", matched: false},
+]
+
+const cardImages_3=[
+  {'src':"./img/av_1.svg", matched: false},
+  {'src':"./img/av_2.svg", matched: false},
+  {'src':"./img/av_3.svg", matched: false},
+  {'src':"./img/av_4.svg", matched: false},
+  {'src':"./img/av_5.svg", matched: false},
+  {'src':"./img/av_6.svg", matched: false},
+  {'src':"./img/av_7.svg", matched: false},
+  {'src':"./img/av_8.svg", matched: false},
+  {'src':"./img/av_9.svg", matched: false},
+  {'src':"./img/av_10.svg", matched: false},
 ]
 
 function App() {
@@ -17,6 +40,28 @@ function App() {
   const [flippedOne, setFlippedOne] = useState(null);
   const [flippedTwo, setFlippedTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [level, setLevel] = useState('easy');
+  const [gameEnd, setGameEnd] = useState(false)
+
+  let cardImages = cardImages_1
+
+switch (level) {
+  case 'easy':
+    cardImages = cardImages_1
+    break;
+
+  case 'medium':
+    cardImages = cardImages_2
+    break;
+
+  case 'hard':
+    cardImages = cardImages_3
+    break;
+
+  default:
+    cardImages = cardImages_1
+    break;
+}
 
 
 //shuffle cards 
@@ -80,8 +125,11 @@ useEffect(()=>{
   return (
     <div className="App">
       <h1>Magic Match</h1>
-      <button onClick={shuffleCard}>New Game</button>
-    
+      <button className='button' onClick={shuffleCard}>New Game</button>
+
+      <Level setLevel={setLevel}/>
+
+      <div className="container">
       <div className="card-grid">
         {cards.map((card) => (
           <Card 
@@ -92,8 +140,11 @@ useEffect(()=>{
           disabled={disabled}/>
         ))}
       </div>
+      </div>
 
-      <p>Turns: {turns} </p>
+      <p className='moves'>Moves: {turns} </p>
+      
+      <PopUpWindow turns={turns} level ={level}/>
 
     </div>
   );

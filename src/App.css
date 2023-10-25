@@ -1,9 +1,26 @@
 body{
-  background-color: burlywood;
+  background-color: #3B0262;
+  color: #fff;
+}
+
+h1{
+  font-size: 2rem;
 }
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+.container{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
 }
 
 .card-grid{
@@ -11,7 +28,7 @@ body{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
 }
 
 .card{
@@ -21,7 +38,7 @@ body{
 .card img{
   width: 100%;
   display: block;
-  border: 2px solid #fff;
+  /* border: 2px solid #fff; */
 
 } 
 /* front cover*/
@@ -47,4 +64,71 @@ body{
   transition-delay: 0s;
 }
 
+.pop-window{
+  width: 30%;
+  background-color: red;
+}
 
+.level-container{
+  display: flex;
+  gap: 1rem;
+}
+
+.button{
+  width: 7rem;
+  height: 3rem;
+  border-radius: 0.9rem;
+}
+
+.level-button:visited {
+  background-color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .card-grid{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    grid-gap: 1.5rem;
+  }
+  
+}
+
+
+@media screen and (max-width: 560px) {
+
+  h1{
+    font-size: 1.5rem;
+  }
+
+  .card-grid{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    grid-gap: 1rem;
+  }
+  
+}
+
+
+@media screen and (max-width: 380px) {
+
+  h1{
+    font-size: 1rem;
+  }
+
+  .App {
+    font-size: 0.7rem;
+  }
+
+  .card-grid{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    grid-gap: 0.7rem;
+  }
+  
+}

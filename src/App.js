@@ -124,10 +124,12 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <h1>Magic Match</h1>
-      <button className='button' onClick={shuffleCard}>New Game</button>
-
+      <h1>Matching game</h1>
+      <div className='button-container'>
       <Level setLevel={setLevel}/>
+      <button className='button' onClick={shuffleCard}>Play</button>
+      </div>
+
 
       <div className="container">
       <div className="card-grid">

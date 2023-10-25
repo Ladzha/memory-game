@@ -1,26 +1,52 @@
+/* ============ VARIABLES ============ */
+
+:root{
+    --background-color: #3B0262;
+    --main-color: #7210B5;
+    --hover-color: rgba(114, 16, 181, 0.6);
+    --active-color: rgba(114, 16, 181, 0.3);
+    --focus-color: #FFE500;
+    --text-color: #FFFDDD;
+    --big-font-size: clamp(1.2rem, 5vw, 2.5rem);
+    --text-size: clamp(0.9rem, 5vw, 1.1rem);
+    --button-width: clamp(1rem, 20vw, 7rem);
+    --button-height: clamp(2rem, 20vw, 3rem);
+}
+
+button{
+  padding: 0;
+  border: none;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
 body{
-  background-color: #3B0262;
-  color: #fff;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--text-size);
+  font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 h1{
-  font-size: 2rem;
+  font-size: var(--big-font-size);
 }
 
 .App {
+  margin-top: 1.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
 }
 .container{
   width: 80%;
   display: flex;
   justify-content: center;
   align-content: center;
-
 }
 
 .card-grid{
@@ -69,19 +95,39 @@ h1{
   background-color: red;
 }
 
-.level-container{
+.button-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.level-button-container{
   display: flex;
   gap: 1rem;
 }
 
 .button{
-  width: 7rem;
-  height: 3rem;
+  width: var(--button-width);
+  height: var(--button-height);
   border-radius: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--main-color);
 }
 
-.level-button:visited {
-  background-color: red;
+.button:hover{
+  background-color: var(--hover-color);
+}
+
+.button:active{
+  background-color: var(--active-color);
+}
+
+.selected{
+
 }
 
 @media screen and (max-width: 768px) {
@@ -98,10 +144,6 @@ h1{
 
 @media screen and (max-width: 560px) {
 
-  h1{
-    font-size: 1.5rem;
-  }
-
   .card-grid{
     margin-top: 2rem;
     display: grid;
@@ -114,10 +156,6 @@ h1{
 
 
 @media screen and (max-width: 380px) {
-
-  h1{
-    font-size: 1rem;
-  }
 
   .App {
     font-size: 0.7rem;

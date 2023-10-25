@@ -16,7 +16,7 @@ const Level = ({setLevel}) => {
 
 
   return (
-    <div className='level-container'>
+    <div className='level-button-container'>
       <button className='level-button button' onClick={handleEasy}>Easy</button>
       <button className='level-button button' onClick={handleMedium}>Medium</button>
       <button className='level-button button' onClick={handleHard}>Hard</button>

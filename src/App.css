@@ -2,14 +2,14 @@
 :root{
     --background-color: #3B0262;
     --main-color: #7210B5;
-    --hover-color: #8F2FD0;
+    --hover-color: #BF75F2;
     --active-color: #A94FE6;
     --focus-color: #FFFDDD;
     --text-color: #FFFDDD;
-    --big-font-size: clamp(1.2rem, 5vw, 2.4rem);
-    --text-size: clamp(0.8rem, 10vw, 1.1rem);
-    --button-width: clamp(5rem, 20vw, 6.7rem);
-    --button-height: clamp(2rem, 20vw, 2.9rem);
+    --big-font-size: clamp(1.2rem, 5vw, 2.3rem);
+    --text-size: clamp(0.8rem, 10vw, 1rem);
+    --button-width: clamp(5rem, 20vw, 6.6rem);
+    --button-height: clamp(2rem, 20vw, 2.8rem);
 }
 
 body{
@@ -42,7 +42,7 @@ button{
   align-items: center;
 }
 .container{
-  width: max(65%, 90%);
+  width: min(60%, 90%);
   /* width: 65%; */
   display: flex;
   justify-content: center;
@@ -51,6 +51,7 @@ button{
 
 .card-grid{
   margin-top: 2rem;
+  margin-bottom: 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
@@ -103,7 +104,6 @@ button{
   opacity:0;
   pointer-events: none;
   transition: 0.5s;
-
 }
 
 .win-window.active {
@@ -150,6 +150,7 @@ button{
   font-weight: 500;
   background-color: var(--main-color);
   color: var(--text-color);
+  cursor: pointer;
 }
 
 .button:hover{
@@ -169,7 +170,6 @@ button{
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1.5rem;
   }
-  
 }
 
 

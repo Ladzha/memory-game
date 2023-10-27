@@ -35,6 +35,7 @@ const cardImages_3=[
 ]
 
 function App() {
+  // const [cardImages, setCardImages]=useState([]);
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [flippedOne, setFlippedOne] = useState(null);
@@ -46,25 +47,44 @@ function App() {
   const [isExploding, setIsExploding] = useState(false);
  
   const time = 0;
-  let cardImages = cardImages_1
+let cardImages = cardImages_1
 
 switch (level) {
   case 'Easy':
-    cardImages = cardImages_1
+    cardImages=cardImages_1
+    // setCardImages([])
     break;
 
   case 'Medium':
-    cardImages = cardImages_2
+    cardImages=cardImages_2
+    // setCardImages(cardImages_2)
     break;
 
   case 'Hard':
-    cardImages = cardImages_3
+    cardImages=cardImages_3
+    // setCardImages(cardImages_3)
     break;
 
   default:
-    cardImages = cardImages_1
+    cardImages=cardImages_1
+    // setCardImages(cardImages_1)
     break;
 }
+
+//random set of card from img
+const randomCardSelection = ()=>{
+
+  let randomImgSet =[];
+  while(randomImgSet.length<4){
+    const randomIndex = Math.floor(Math.random()*cardImages_3.length)
+    if(!randomImgSet.includes(cardImages_3[randomIndex])){
+      randomImgSet.push(cardImages_3[randomIndex])
+    }
+  }
+  console.log(randomImgSet);
+
+}
+
 
 
 //shuffle cards 
@@ -87,7 +107,7 @@ const handleChoice=(card)=>{
 
 //compare two selected cards
 useEffect(() => {
-
+  randomCardSelection()
   if(flippedOne && flippedTwo){
     setDisabled(true)
     if(flippedOne.src === flippedTwo.src){
@@ -104,14 +124,24 @@ useEffect(() => {
     }
     else {
       setTimeout(()=>resetTurn(), 1000)
-      
     } 
   }
-  
+
+  checkWin(cards)
 
 }, [flippedOne, flippedTwo])
 
-console.log(cards)
+// checking if all cards matched
+const checkWin =(cardArray)=>{
+  const allMatched =cardArray.every(card => card.matched)
+  if(allMatched){
+    setWin(true)
+    if(win){
+      setWindowActive(true)
+    }
+  }
+}
+
 
 //reset choices and increase turn 
 const resetTurn =()=>{
@@ -125,20 +155,18 @@ useEffect(()=>{
   shuffleCard()
 }, [])
 
-const OpenWindow = ()=>{
-  setWindowActive(true)
-  console.log(windowActive);
-}
-
   return (
     <div className="App">
       <h1>Matching game</h1>
       <div className='button-container'>
-      <Level setLevel={setLevel} level={level}/>
-      <button className='button' onClick={shuffleCard}>Play</button>
-      {/* <p className='moves bold'>Moves: {turns} </p> */}
-      </div>
 
+      <Level 
+      setLevel={setLevel} 
+      level={level}
+      shuffleCard={shuffleCard}/>
+
+      {/* <button className='button' onClick={shuffleCard}>Play</button> */}
+      </div>
 
       <div className="container">
       <div className="card-grid">
@@ -153,8 +181,6 @@ const OpenWindow = ()=>{
       </div>
       </div>
 
-      <button className='button' onClick={OpenWindow}>Open</button>
-
       <WinWindow 
       turns={turns} 
       level ={level} 
@@ -162,7 +188,8 @@ const OpenWindow = ()=>{
       windowActive={windowActive}
       setWindowActive={setWindowActive}
       isExploding={isExploding}
-      setIsExploding={setIsExploding} />
+      setIsExploding={setIsExploding}
+      shuffleCard={shuffleCard} />
 
     </div>
   );

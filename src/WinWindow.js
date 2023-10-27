@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import ConfettiExplosion from 'react-confetti-explosion';
 
 
-const WinWindow = ({turns, level, time, windowActive, setWindowActive, isExploding, setIsExploding}) => {
+const WinWindow = ({turns, level, time, windowActive, setWindowActive, isExploding, setIsExploding, shuffleCard}) => {
 
   const handleClose = ()=>{
     setWindowActive(false)
+    shuffleCard()
   }
 
   if(windowActive){
@@ -14,12 +15,7 @@ const WinWindow = ({turns, level, time, windowActive, setWindowActive, isExplodi
   else{
     setIsExploding(false)
   }
-
-  // useEffect(()=>{
-  //   setIsExploding(true)
-  // }, [isExploding]) 
-
-
+  
   return (
     <div className={windowActive ? 'win-window active' : 'win-window' } onClick={handleClose}>
       <div className= {windowActive ? 'win-container active' : 'win-container' }>

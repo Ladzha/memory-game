@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
-const Level = ({setLevel, level}) => {
+const Level = ({setLevel, level, shuffleCard}) => {
 
   const handleEasy =()=>{
     setLevel('Easy')
@@ -13,6 +13,10 @@ const Level = ({setLevel, level}) => {
   const handleHard =()=>{
     setLevel('Hard')
   }
+
+  useEffect(()=>{
+    shuffleCard()
+  }, [level])
 
   return (
     <div className='level-button-container'>

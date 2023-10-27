@@ -1,26 +1,15 @@
 /* ============ VARIABLES ============ */
-
 :root{
     --background-color: #3B0262;
     --main-color: #7210B5;
-    --hover-color: rgba(114, 16, 181, 0.6);
-    --active-color: rgba(114, 16, 181, 0.3);
-    --focus-color: #FFE500;
+    --hover-color: #8F2FD0;
+    --active-color: #A94FE6;
+    --focus-color: #FFFDDD;
     --text-color: #FFFDDD;
-    --big-font-size: clamp(1.2rem, 5vw, 2.5rem);
-    --text-size: clamp(0.9rem, 5vw, 1.1rem);
-    --button-width: clamp(1rem, 20vw, 7rem);
-    --button-height: clamp(2rem, 20vw, 3rem);
-}
-
-button{
-  padding: 0;
-  border: none;
-  color: inherit;
-  font-weight: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  cursor: pointer;
+    --big-font-size: clamp(1.2rem, 5vw, 2.4rem);
+    --text-size: clamp(0.8rem, 10vw, 1.1rem);
+    --button-width: clamp(5rem, 20vw, 6.7rem);
+    --button-height: clamp(2rem, 20vw, 2.9rem);
 }
 
 body{
@@ -34,8 +23,18 @@ h1{
   font-size: var(--big-font-size);
 }
 
+button{
+  padding: 0;
+  border: none;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
 .App {
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -43,7 +42,8 @@ h1{
   align-items: center;
 }
 .container{
-  width: 80%;
+  width: max(65%, 90%);
+  /* width: 65%; */
   display: flex;
   justify-content: center;
   align-content: center;
@@ -54,7 +54,7 @@ h1{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
-  grid-gap: 1.5rem;
+  grid-gap: 1rem;
 }
 
 .card{
@@ -90,9 +90,42 @@ h1{
   transition-delay: 0s;
 }
 
-.pop-window{
-  width: 30%;
-  background-color: red;
+.win-window{
+  height: 100vh;
+  width: 100vw;
+  top:0;
+  left:0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity:0;
+  pointer-events: none;
+  transition: 0.5s;
+
+}
+
+.win-window.active {
+  opacity:1;
+  pointer-events: all;
+}
+.win-container{
+  padding: 2rem 5rem 2rem 5rem;
+  background-color: var(--focus-color);
+  border-radius: 3rem;
+  font-weight: 500;
+  color: var(--background-color);
+  transform: scale(0.5);
+  transition: 0.4s;
+}
+
+.win-container.active{
+  transform: scale(1);
+}
+
+.bold{
+  font-weight: 600;
 }
 
 .button-container{
@@ -101,11 +134,12 @@ h1{
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 .level-button-container{
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -113,9 +147,9 @@ h1{
   width: var(--button-width);
   height: var(--button-height);
   border-radius: 0.9rem;
-  font-size: 1rem;
   font-weight: 500;
   background-color: var(--main-color);
+  color: var(--text-color);
 }
 
 .button:hover{
@@ -127,15 +161,12 @@ h1{
 }
 
 .selected{
-
+  background-color: var(--active-color);
 }
 
 @media screen and (max-width: 768px) {
   .card-grid{
-    margin-top: 2rem;
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
     grid-gap: 1.5rem;
   }
   
@@ -145,10 +176,7 @@ h1{
 @media screen and (max-width: 560px) {
 
   .card-grid{
-    margin-top: 2rem;
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
     grid-gap: 1rem;
   }
   
@@ -157,16 +185,5 @@ h1{
 
 @media screen and (max-width: 380px) {
 
-  .App {
-    font-size: 0.7rem;
-  }
-
-  .card-grid{
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-    grid-gap: 0.7rem;
-  }
   
 }

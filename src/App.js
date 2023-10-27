@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Card from './Card';
 import Level from './Level';
-import PopUpWindow from './PopUpWindow'
+import WinWindow from './WinWindow'
 import './App.css';
 
 
@@ -40,21 +40,24 @@ function App() {
   const [flippedOne, setFlippedOne] = useState(null);
   const [flippedTwo, setFlippedTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [level, setLevel] = useState('easy');
-  const [gameEnd, setGameEnd] = useState(false)
-
+  const [level, setLevel] = useState('Easy');
+  const [win, setWin] = useState(false);
+  const [windowActive, setWindowActive] = useState(false);
+  const [isExploding, setIsExploding] = useState(false);
+ 
+  const time = 0;
   let cardImages = cardImages_1
 
 switch (level) {
-  case 'easy':
+  case 'Easy':
     cardImages = cardImages_1
     break;
 
-  case 'medium':
+  case 'Medium':
     cardImages = cardImages_2
     break;
 
-  case 'hard':
+  case 'Hard':
     cardImages = cardImages_3
     break;
 
@@ -122,12 +125,18 @@ useEffect(()=>{
   shuffleCard()
 }, [])
 
+const OpenWindow = ()=>{
+  setWindowActive(true)
+  console.log(windowActive);
+}
+
   return (
     <div className="App">
       <h1>Matching game</h1>
       <div className='button-container'>
-      <Level setLevel={setLevel}/>
+      <Level setLevel={setLevel} level={level}/>
       <button className='button' onClick={shuffleCard}>Play</button>
+      {/* <p className='moves bold'>Moves: {turns} </p> */}
       </div>
 
 
@@ -144,9 +153,16 @@ useEffect(()=>{
       </div>
       </div>
 
-      <p className='moves'>Moves: {turns} </p>
-      
-      <PopUpWindow turns={turns} level ={level}/>
+      <button className='button' onClick={OpenWindow}>Open</button>
+
+      <WinWindow 
+      turns={turns} 
+      level ={level} 
+      time = {time}
+      windowActive={windowActive}
+      setWindowActive={setWindowActive}
+      isExploding={isExploding}
+      setIsExploding={setIsExploding} />
 
     </div>
   );

@@ -2,26 +2,10 @@ import React, {useState, useEffect} from 'react';
 import Card from './Card';
 import Level from './Level';
 import WinWindow from './WinWindow'
+import Time from './Time'
 import './App.css';
 
-
-const cardImages_1=[
-  {'src':"./img/av_1.svg", matched: false},
-  {'src':"./img/av_2.svg", matched: false},
-  {'src':"./img/av_3.svg", matched: false},
-  {'src':"./img/av_4.svg", matched: false},
-]
-
-const cardImages_2=[
-  {'src':"./img/av_1.svg", matched: false},
-  {'src':"./img/av_2.svg", matched: false},
-  {'src':"./img/av_3.svg", matched: false},
-  {'src':"./img/av_4.svg", matched: false},
-  {'src':"./img/av_5.svg", matched: false},
-  {'src':"./img/av_6.svg", matched: false},
-]
-
-const cardImages_3=[
+const all_images=[
   {'src':"./img/av_1.svg", matched: false},
   {'src':"./img/av_2.svg", matched: false},
   {'src':"./img/av_3.svg", matched: false},
@@ -45,46 +29,47 @@ function App() {
   const [win, setWin] = useState(false);
   const [windowActive, setWindowActive] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
- 
+
   const time = 0;
-let cardImages = cardImages_1
+  
+
+let cardImages=randomCardSelection(4);
 
 switch (level) {
   case 'Easy':
-    cardImages=cardImages_1
+    cardImages=randomCardSelection(4)
     // setCardImages([])
     break;
 
   case 'Medium':
-    cardImages=cardImages_2
+    cardImages=randomCardSelection(6)
     // setCardImages(cardImages_2)
     break;
 
   case 'Hard':
-    cardImages=cardImages_3
+    cardImages=randomCardSelection(8)
     // setCardImages(cardImages_3)
     break;
 
   default:
-    cardImages=cardImages_1
+    cardImages=randomCardSelection(4)
     // setCardImages(cardImages_1)
     break;
 }
 
-//random set of card from img
-const randomCardSelection = ()=>{
+//random set of card from all img array
+function randomCardSelection(number){
 
   let randomImgSet =[];
-  while(randomImgSet.length<4){
-    const randomIndex = Math.floor(Math.random()*cardImages_3.length)
-    if(!randomImgSet.includes(cardImages_3[randomIndex])){
-      randomImgSet.push(cardImages_3[randomIndex])
+  while(randomImgSet.length<number){
+    const randomIndex = Math.floor(Math.random()*all_images.length)
+    if(!randomImgSet.includes(all_images[randomIndex])){
+      randomImgSet.push(all_images[randomIndex])
     }
   }
   console.log(randomImgSet);
-
+  return randomImgSet
 }
-
 
 
 //shuffle cards 
@@ -131,16 +116,23 @@ useEffect(() => {
 
 }, [flippedOne, flippedTwo])
 
+
 // checking if all cards matched
 const checkWin =(cardArray)=>{
   const allMatched =cardArray.every(card => card.matched)
   if(allMatched){
     setWin(true)
     if(win){
-      setWindowActive(true)
+      showWindow()
     }
   }
 }
+
+function showWindow(){
+  setTimeout(() => {
+    setWindowActive(true);
+  }, 1000);
+};
 
 
 //reset choices and increase turn 
@@ -180,6 +172,8 @@ useEffect(()=>{
         ))}
       </div>
       </div>
+
+      <Time/>
 
       <WinWindow 
       turns={turns} 

@@ -160,7 +160,7 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <p className='main-title'>Memory game</p>
+      <p className='main-title'>MEMORY GAME</p>
       <div className='button-container'>
 
       <Level 
@@ -170,6 +170,7 @@ useEffect(()=>{
       setGridSizeClass={setGridSizeClass}/>
 
       {/* <button className='button' onClick={shuffleCard}>Play</button> */}
+      
       </div>
 
       <div className="container">

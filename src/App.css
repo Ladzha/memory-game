@@ -12,9 +12,9 @@
     --active-color: #A94FE6;
     --focus-color: #FFFDDD;
     --text-color: #FFFDDD;
-    --big-font-size: clamp(1.7rem, 5vw, 2.3rem);
-    --text-size: clamp(0.8rem, 10vw, 0.95rem);
-    --button-width: clamp(5rem, 20vw, 6.8rem);
+    --big-font-size: clamp(2rem, 5vw, 2.3rem);
+    --text-size: clamp(0.8rem, 10vw, 1rem);
+    --button-width: clamp(6.7rem, 10vw, 7.5rem);
     --button-height: clamp(2rem, 20vw, 2.8rem);
     --gap: clamp(0.1rem, 20vw, 1rem);
 }
@@ -55,7 +55,7 @@ button{
 .container{
   margin-left: 2rem;
   margin-right: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -155,19 +155,19 @@ button{
   font-weight: 600;
 }
 
-.button-container{
+/* .button-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   margin: 0.5rem;
-}
+} */
 
 .level-button-container{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
 }
 
 .button{
@@ -192,7 +192,6 @@ button{
   background-color: var(--active-color);
 }
 
-
 .footer{
   margin: 0;
   width: 100%;
@@ -202,6 +201,8 @@ button{
   background-color: var(--main-color);
   font-size: 0.8rem;
   padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -227,10 +228,19 @@ button{
     grid-gap: 0.8rem;
     margin: 1.5rem;
   }
+
+  .level-button-container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
 
 @media screen and (max-width: 380px) {
 
-  
+  .level-button-container{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
 }

@@ -1,4 +1,10 @@
 /* ============ VARIABLES ============ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Raleway:wght@100;200;300;400;500;600&display=swap');
+
+
 :root{
     --background-color: #3B0262;
     --main-color: #7210B5;
@@ -6,22 +12,22 @@
     --active-color: #A94FE6;
     --focus-color: #FFFDDD;
     --text-color: #FFFDDD;
-    --big-font-size: clamp(1.2rem, 5vw, 2.3rem);
-    --text-size: clamp(0.8rem, 10vw, 1rem);
-    --button-width: clamp(5rem, 20vw, 6.6rem);
+    --big-font-size: clamp(1.7rem, 5vw, 2.3rem);
+    --text-size: clamp(0.8rem, 10vw, 0.95rem);
+    --button-width: clamp(5rem, 20vw, 6.8rem);
     --button-height: clamp(2rem, 20vw, 2.8rem);
+    --gap: clamp(0.1rem, 20vw, 1rem);
 }
 
 body{
   background-color: var(--background-color);
   color: var(--text-color);
   font-size: var(--text-size);
-  font-family:Verdana, Geneva, Tahoma, sans-serif
+  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Raleway', sans-serif; */
+  /* font-family:Verdana, Geneva, Tahoma, sans-serif */
 }
 
-h1{
-  font-size: var(--big-font-size);
-}
 
 button{
   padding: 0;
@@ -34,16 +40,21 @@ button{
 }
 
 .App {
-  /* margin-top: 1.5rem; */
+  margin-top: 1.1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.main-title{
+  font-size: var(--big-font-size);
+}
+
 .container{
-  width: min(60%, 90%);
-  /* width: 65%; */
+  margin-left: 2rem;
+  margin-right: 2rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -53,9 +64,23 @@ button{
   margin-top: 2rem;
   margin-bottom: 3rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   justify-content: center;
-  grid-gap: 1rem;
+}
+
+.card-grid-easy{
+  grid-template-columns: repeat(4, 2fr);
+  grid-gap: var(--gap);
+}
+
+.card-grid-medium{
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: var(--gap);
+}
+
+.card-grid-hard{
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 0.6rem;
+
 }
 
 .card{
@@ -108,6 +133,7 @@ button{
 
 .win-window.active {
   opacity:1;
+  z-index: 7;
   pointer-events: all;
 }
 .win-container{
@@ -165,21 +191,41 @@ button{
   background-color: var(--active-color);
 }
 
+
+.footer{
+  margin: 0;
+  width: 100%;
+  margin-top: 4rem;
+  bottom: 0;
+  position: fixed;
+  background-color: var(--main-color);
+  font-size: 0.8rem;
+  padding: 1rem;
+}
+
 @media screen and (max-width: 768px) {
+
   .card-grid{
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1.5rem;
+    grid-gap: 0.8rem;
+    margin: 1.5rem;
+  }
+  .card-grid-medium{
+    grid-template-columns: repeat(4, 1fr);
+    margin: 1.5rem;
+  }
+
+  .card-grid-hard{
+    grid-template-columns: repeat(4, 1fr);
+    margin: 1.5rem;
   }
 }
 
-
 @media screen and (max-width: 560px) {
-
   .card-grid{
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
+    grid-gap: 0.8rem;
+    margin: 1.5rem;
   }
-  
 }
 
 

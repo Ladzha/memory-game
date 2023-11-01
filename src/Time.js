@@ -18,7 +18,7 @@ const Time = () => {
   return (
     <div style={{textAlign: 'center'}}>
       <div style={{fontSize: '50px'}}>
-        {hours!=0 ?`${hours}:`:''}<span>{minutes}</span>:<span>{seconds}</span>
+        {hours!==0 ?`${hours}:`:''}<span>{minutes}</span>:<span>{seconds}</span>
       </div>
       {/* <p>{isRunning ? 'Running' : 'Not running'}</p> */}
       {/* <button onClick={start}>Start</button>

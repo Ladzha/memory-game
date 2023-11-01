@@ -3,6 +3,7 @@ import Card from './Card';
 import Level from './Level';
 import WinWindow from './WinWindow'
 import Time from './Time'
+import Footer from './Footer'
 import './App.css';
 
 const all_images=[
@@ -16,6 +17,10 @@ const all_images=[
   {'src':"./img/av_8.svg", matched: false},
   {'src':"./img/av_9.svg", matched: false},
   {'src':"./img/av_10.svg", matched: false},
+  {'src':"./img/av_11.svg", matched: false},
+  {'src':"./img/av_12.svg", matched: false},
+  {'src':"./img/av_13.svg", matched: false},
+  {'src':"./img/av_14.svg", matched: false},
 ]
 
 function App() {
@@ -29,6 +34,7 @@ function App() {
   const [win, setWin] = useState(false);
   const [windowActive, setWindowActive] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
+  const [gridSizeClass, setGridSizeClass ] =useState('card-grid-easy')
 
   const time = 0;
   
@@ -36,18 +42,24 @@ function App() {
 let cardImages=randomCardSelection(4);
 
 switch (level) {
-  case 'Easy':
+
+  case 'Super Easy':
     cardImages=randomCardSelection(4)
     // setCardImages([])
     break;
 
-  case 'Medium':
+  case 'Easy':
     cardImages=randomCardSelection(6)
+    // setCardImages([])
+    break;
+
+  case 'Medium':
+    cardImages=randomCardSelection(8)
     // setCardImages(cardImages_2)
     break;
 
   case 'Hard':
-    cardImages=randomCardSelection(8)
+    cardImages=randomCardSelection(10)
     // setCardImages(cardImages_3)
     break;
 
@@ -67,7 +79,6 @@ function randomCardSelection(number){
       randomImgSet.push(all_images[randomIndex])
     }
   }
-  console.log(randomImgSet);
   return randomImgSet
 }
 
@@ -149,19 +160,31 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <h1>Matching game</h1>
+      <p className='main-title'>Memory game</p>
       <div className='button-container'>
 
       <Level 
-      setLevel={setLevel} 
       level={level}
-      shuffleCard={shuffleCard}/>
+      setLevel={setLevel} 
+      shuffleCard={shuffleCard}
+      setGridSizeClass={setGridSizeClass}/>
 
       {/* <button className='button' onClick={shuffleCard}>Play</button> */}
       </div>
 
       <div className="container">
-      <div className="card-grid">
+
+      <WinWindow 
+      turns={turns} 
+      level ={level} 
+      time = {time}
+      windowActive={windowActive}
+      setWindowActive={setWindowActive}
+      isExploding={isExploding}
+      setIsExploding={setIsExploding}
+      shuffleCard={shuffleCard} />
+
+      <div className={`card-grid ${gridSizeClass}`}>
         {cards.map((card) => (
           <Card 
           card={card} 
@@ -173,17 +196,8 @@ useEffect(()=>{
       </div>
       </div>
 
-      <Time/>
-
-      <WinWindow 
-      turns={turns} 
-      level ={level} 
-      time = {time}
-      windowActive={windowActive}
-      setWindowActive={setWindowActive}
-      isExploding={isExploding}
-      setIsExploding={setIsExploding}
-      shuffleCard={shuffleCard} />
+      {/* <Time/> */}
+      <Footer/>
 
     </div>
   );

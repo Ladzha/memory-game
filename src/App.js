@@ -82,7 +82,6 @@ function randomCardSelection(number){
   return randomImgSet
 }
 
-
 //shuffle cards 
 const shuffleCard = () => {
   const shuffleCards = [...cardImages, ...cardImages]
@@ -160,6 +159,7 @@ useEffect(()=>{
 
   return (
     <div className="App">
+      <div className='main'>
       <p className='main-title'>MEMORY GAME</p>
       <div className='button-container'>
 
@@ -168,12 +168,8 @@ useEffect(()=>{
       setLevel={setLevel} 
       shuffleCard={shuffleCard}
       setGridSizeClass={setGridSizeClass}/>
-
-      {/* <button className='button' onClick={shuffleCard}>Play</button> */}
       
       </div>
-
-      <div className="container">
 
       <WinWindow 
       turns={turns} 
@@ -184,6 +180,8 @@ useEffect(()=>{
       isExploding={isExploding}
       setIsExploding={setIsExploding}
       shuffleCard={shuffleCard} />
+
+      <div className="container">
 
       <div className={`card-grid ${gridSizeClass}`}>
         {cards.map((card) => (
@@ -198,8 +196,9 @@ useEffect(()=>{
       </div>
 
       {/* <Time/> */}
-      <Footer/>
 
+      </div>
+      <Footer/>
     </div>
   );
 }

@@ -5,7 +5,7 @@ const Level = ({level, setLevel, shuffleCard, setGridSizeClass }) => {
 
   const handleSuperEasy =()=>{
     setLevel('Super Easy')
-    setGridSizeClass('card-grid-easy')
+    setGridSizeClass('card-grid-super-easy')
   }
 
 

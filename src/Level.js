@@ -2,12 +2,10 @@ import React, {useEffect} from 'react'
 
 const Level = ({level, setLevel, shuffleCard, setGridSizeClass }) => {
 
-
   const handleSuperEasy =()=>{
     setLevel('Super Easy')
     setGridSizeClass('card-grid-super-easy')
   }
-
 
   const handleEasy =()=>{
     setLevel('Easy')
@@ -26,7 +24,7 @@ const Level = ({level, setLevel, shuffleCard, setGridSizeClass }) => {
 
   useEffect(()=>{
     shuffleCard()
-  }, [level])
+  }, [level, shuffleCard])
 
   return (
     <div className='level-button-container'>

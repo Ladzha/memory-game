@@ -2,14 +2,14 @@ import React from 'react'
 import ConfettiExplosion from 'react-confetti-explosion';
 
 
-const WinWindow = ({turns, level, time, windowActive, setWindowActive, isExploding, setIsExploding, shuffleCard}) => {
+const WinWindow = ({turns, level, time, winWindow, setWinWindow, isExploding, setIsExploding, shuffleCard}) => {
 
   const handleClose = ()=>{
-    setWindowActive(false)
+    setWinWindow(false)
     shuffleCard()
   }
 
-  if(windowActive){
+  if(winWindow){
     setIsExploding(true)
   }
   else{
@@ -17,8 +17,8 @@ const WinWindow = ({turns, level, time, windowActive, setWindowActive, isExplodi
   }
   
   return (
-    <div className={windowActive ? 'win-window active' : 'win-window' } onClick={handleClose}>
-      <div className= {windowActive ? 'win-container active' : 'win-container' }>
+    <div className={winWindow ? 'win-window active' : 'win-window' } onClick={handleClose}>
+      <div className= {winWindow ? 'win-container active' : 'win-container' }>
       {isExploding && <ConfettiExplosion />}
       <h3 className='bold'>You Win!</h3> 
         <p><span className='bold'>Level:</span> {level}.</p> 
